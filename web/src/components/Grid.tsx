@@ -54,6 +54,26 @@ export const Th = styled.th<ThProps>`
   }
 `;
 
+const TrashIcon = styled(FaTrash)`
+  color: #ff0000;
+  cursor: pointer;
+
+  &:hover {
+    color: #aa0000;
+    transition: 0.5s;
+  }
+`;
+
+const EditIcon = styled(FaEdit)`
+  color: #0000ff;
+  cursor: pointer;
+
+  &:hover {
+    color: #000077;
+    transition: 0.5s;
+  }
+`;
+
 export const Td = styled.td<TdProps>`
   padding-top: 15px;
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
@@ -99,7 +119,7 @@ const Grid: React.FC<GridProps> = ({ users, setUsers, setOnEdit }) => {
         <Tr>
           <Th>Nome</Th>
           <Th>Email</Th>
-          <Th onlyWeb>Fone</Th>
+          <Th onlyWeb>Telefone</Th>
           <Th></Th>
           <Th></Th>
         </Tr>
@@ -113,10 +133,10 @@ const Grid: React.FC<GridProps> = ({ users, setUsers, setOnEdit }) => {
               {item.fone}
             </Td>
             <Td alignCenter width="5%">
-              <FaEdit onClick={() => handleEdit(item)} />
+              <EditIcon onClick={() => handleEdit(item)} />
             </Td>
             <Td alignCenter width="5%">
-              <FaTrash onClick={() => handleDelete(item.id)} />
+              <TrashIcon onClick={() => handleDelete(item.id)} />
             </Td>
           </Tr>
         ))}

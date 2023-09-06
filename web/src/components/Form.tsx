@@ -56,6 +56,24 @@ const Button = styled.button`
 const Form: React.FC<FormProps> = ({ getUsers, onEdit, setOnEdit }) => {
   const ref = useRef<HTMLFormElement | null>(null);
 
+  const formatPhoneNumber = (phoneNumber: string) => {
+
+    const numericPhoneNumber = phoneNumber.replace(/\D/g, "");
+
+    if (numericPhoneNumber.length >= 10) {
+      return `(${numericPhoneNumber.slice(0, 2)}) ${numericPhoneNumber.slice(
+        2, 7
+      )}-${numericPhoneNumber.slice(7, 11)}`;
+    } else {
+      return numericPhoneNumber;
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+    e.target.value = formattedPhoneNumber;
+  };
+
   useEffect(() => {
     if (onEdit) {
       const user = ref.current;
@@ -139,7 +157,7 @@ const Form: React.FC<FormProps> = ({ getUsers, onEdit, setOnEdit }) => {
         </InputArea>
         <InputArea>
           <Label>Telefone</Label>
-          <Input name="fone" />
+          <Input onChange={handlePhoneChange} name="fone" />
         </InputArea>
         <InputArea>
           <Label>Data de Nascimento</Label>
