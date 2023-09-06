@@ -1,0 +1,12 @@
+GET http://localhost:3333/
+
+###
+
+POST http://localhost:3333/
+
+{
+"nome": "Matheus",
+"email": "math@email.com",
+"fone": "123456789",
+"data_nascimento": "1999-02-12"
+}
