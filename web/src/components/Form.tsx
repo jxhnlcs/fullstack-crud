@@ -86,7 +86,7 @@ const Form: React.FC<FormProps> = ({ getUsers, onEdit, setOnEdit }) => {
 
     try {
       if (onEdit) {
-        await axios.put(`http://localhost:8800/${onEdit.id}`, {
+        await axios.put(`http://localhost:3333/${onEdit.id}`, {
           nome: user.nome.value,
           email: user.email.value,
           fone: user.fone.value,
@@ -94,7 +94,7 @@ const Form: React.FC<FormProps> = ({ getUsers, onEdit, setOnEdit }) => {
         });
         toast.success("Usuário editado com sucesso!") as ToastContent;
       } else {
-        await axios.post("http://localhost:8800", {
+        await axios.post("http://localhost:3333", {
           nome: user.nome.value,
           email: user.email.value,
           fone: user.fone.value,

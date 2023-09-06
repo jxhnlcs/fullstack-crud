@@ -58,6 +58,7 @@ export const Td = styled.td<TdProps>`
   padding-top: 15px;
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
   width: ${(props) => (props.width ? props.width : "auto")};
+  cursor: pointer;
 
   @media (max-width: 500px) {
     ${(props) => props.onlyWeb && "display: none"}
@@ -71,7 +72,7 @@ const Grid: React.FC<GridProps> = ({ users, setUsers, setOnEdit }) => {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await axios.delete(`http://localhost:8800/${id}`);
+      const response = await axios.delete(`http://localhost:3333/${id}`);
       const newArray = users.filter((user) => user.id !== id);
 
       setUsers(newArray);

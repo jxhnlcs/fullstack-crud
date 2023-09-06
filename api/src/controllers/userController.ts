@@ -22,14 +22,11 @@ export const addUser = (req: Request, res: Response): void => {
     req.body.data_nascimento,
   ];
 
-  // console.log(values)
-
   db.query(q, [values], (err) => {
     if (err) return res.json(err);
 
     return res.status(200).json('Usuário criado com sucesso.');
   });
-
 };
 
 export const updateUser = (req: Request, res: Response): void => {

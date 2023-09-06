@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios, { AxiosError } from "axios";
+import { format } from 'date-fns';
 
 interface User {
   id: number;
@@ -31,10 +32,18 @@ const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [onEdit, setOnEdit] = useState<User | null>(null);
 
+  const formatUserData = (userData: User[]) => {
+    return userData.map((user) => ({
+      ...user,
+      data_nascimento: format(new Date(user.data_nascimento), 'yyyy-MM-dd'),
+    }));
+  };
+
   const getUsers = async () => {
     try {
       const res = await axios.get<User[]>("http://localhost:3333");
-      setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
+      const formattedUsers = formatUserData(res.data);
+      setUsers(formattedUsers.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
     } catch (error) {
       const axiosError = error as AxiosError;
       if (axiosError.response) {
