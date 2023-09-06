@@ -26,6 +26,7 @@ npm install
 ```
 3. Configure as Variáveis de Ambiente do Banco de Dados:
 
+- No arquivo db.sql dentro do diretório da api está a query para criar a tabela usuarios
 - Abra o arquivo db.ts localizado em src/models.
 - Altere as variáveis de ambiente host, user, password e database de acordo com as configurações do seu banco de dados MySQL.
 
